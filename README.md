@@ -120,7 +120,3 @@ AI_MeetingAssistance/
 
 Détails complets, mesures et méthodologie de validation dans le document d'architecture.
 
-## Auteur
-
-**Nidhal Rouissi** — stagiaire fin d'études, EY Tunisia
-Encadrants : Mohamed Anis Aouadi, Eya Bouhouch
