@@ -1,0 +1,5 @@
+# Fichier de contraintes : empêche pip de changer la version de torch/torchaudio
+# quand une autre librairie (whisperx, pyannote...) demande une version différente.
+# Sans ça, pip remplacerait silencieusement notre torch+cu121 par un torch CPU-only.
+torch==2.5.1
+torchaudio==2.5.1

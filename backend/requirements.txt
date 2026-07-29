@@ -1,0 +1,39 @@
+# --- Phase 1 : Transcription (sans HuggingFace) ---
+# Installer PyTorch avec support CUDA AVANT le reste :
+#   pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cu121
+#
+# Puis installer le reste :
+#   pip install -r requirements.txt -c constraints.txt
+
+# ATTENTION INSTALLATION SPÉCIALE : whisperx==3.2.0 exige STRICTEMENT faster-whisper==1.0.0
+# dans ses propres métadonnées (pas une plage, une version exacte), qui elle-même exige le
+# vieux av==11.* sans wheel Windows précompilée. On installe whisperx SANS ses dépendances
+# automatiques (--no-deps, voir instructions plus bas) et on fournit nous-mêmes une version
+# récente et compatible de faster-whisper/av/ctranslate2 à la place.
+openai-whisper==20240930      # télécharge depuis le CDN OpenAI, pas HuggingFace. Tourne en local sur CUDA.
+ctranslate2==4.4.0
+faster-whisper==1.2.1          # version récente, av moderne avec wheel Windows
+av==17.1.0
+ffmpeg-python==0.2.0
+
+# --- Diarisation (sans HuggingFace, poids inclus dans le package) ---
+# ATTENTION : resemblyzer exige "webrtcvad" dans son propre setup.py, qui nécessite
+# une compilation C++ sur Windows. On installe resemblyzer sans ses dépendances
+# automatiques (--no-deps, voir instructions plus bas) et on fournit nous-mêmes
+# webrtcvad-wheels (même usage, wheel précompilée) à la place.
+resemblyzer==0.1.4
+webrtcvad-wheels==2.0.14
+librosa>=0.9.1
+scikit-learn==1.5.2
+
+# --- Phase 2 : Backend API ---
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+sqlalchemy==2.0.36
+pydantic==2.10.4
+pydantic-settings==2.7.1
+
+# --- Phase 3 : LLM ---
+groq==0.15.0
+ollama==0.4.5

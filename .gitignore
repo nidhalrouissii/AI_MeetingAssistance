@@ -1,0 +1,30 @@
+# Python virtual environment
+venv/
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# Database
+*.db
+
+# Models
+models/
+
+# Storage
+storage/
+
+# Node
+node_modules/
+frontend/node_modules/
+
+# Build
+dist/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
