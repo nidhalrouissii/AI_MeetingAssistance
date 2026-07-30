@@ -45,7 +45,13 @@ Le document `Architecture_AI_Meeting_Assistant.pdf` (à la racine du dépôt) d�
 - Une clé API [Groq](https://console.groq.com) (gratuite)
 - `ffmpeg` installé et accessible dans le PATH
 
-### 1. Backend
+### 1. Cloner le repository
+```bash
+git clone https://github.com/nidhalrouissii/AI_MeetingAssistance.git
+cd AI_MeetingAssistance
+```
+
+### 2. Backend
 
 ```bash
 python -m venv venv
@@ -78,7 +84,7 @@ uvicorn backend.main:app --reload
 
 L'API est disponible sur `http://localhost:8000` (documentation interactive sur `/docs`).
 
-### 2. Frontend
+### 3. Frontend
 
 ```bash
 cd frontend
