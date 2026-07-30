@@ -14,15 +14,17 @@ Projet réalisé dans le cadre du stage de fin d'études (ESPRIT, spécialité I
 - Export du compte rendu en PDF
 
 ## Stack technique
-
+ 
 | Composant | Technologie |
 |---|---|
 | Transcription | [faster-whisper](https://github.com/SYSTRAN/faster-whisper) (CTranslate2), modèle `medium`, converti et hébergé localement |
+| Détection d'activité vocale | Silero VAD (intégré à faster-whisper) |
+| Traitement audio | [librosa](https://librosa.org/) (chargement audio, préservation de la timeline) |
 | Diarisation | [Resemblyzer](https://github.com/resemble-ai/Resemblyzer) (embeddings GE2E) + scikit-learn (KMeans, sélection automatique du nombre de locuteurs par score de silhouette) |
 | Analyse | Groq API — LLaMA 3.3 70B |
 | Backend | FastAPI, SQLAlchemy, SQLite |
 | Frontend | React (Vite) |
-
+ 
 Aucune donnée n'est envoyée à Hugging Face à l'exécution : les modèles sont convertis et stockés localement lors de l'installation.
 
 ## Architecture
