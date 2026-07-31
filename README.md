@@ -128,3 +128,25 @@ AI_MeetingAssistance/
 
 Détails complets, mesures et méthodologie de validation dans le document d'architecture.
 
+
+## Utiliser un autre fournisseur LLM (OpenAI, etc.)
+ 
+Le projet utilise Groq (LLaMA 3.3 70B) par défaut, via le package `groq` (SDK officiel, compatible avec le format de l'API OpenAI). Pour utiliser un autre fournisseur :
+ 
+1. **Obtenir une clé API** chez le fournisseur choisi (ex. [platform.openai.com](https://platform.openai.com) pour OpenAI).
+2. **Ajouter la clé dans `.env`** à la racine :
+```
+   OPENAI_API_KEY=votre_clé_ici
+```
+ 
+3. **Installer le SDK correspondant** si différent de celui déjà présent :
+```bash
+   pip install openai
+```
+ 
+4. **Ajouter un paramètre dans `backend/core/config.py`** pour la nouvelle clé et le modèle voulu, sur le même modèle que `groq_api_key` et `groq_model` déjà présents.
+5. **Adapter `backend/services/analyzer.py`** : remplacer l'instanciation du client Groq par celle du client OpenAI (l'API `chat.completions.create` est quasiment identique entre les deux, seuls le nom du client et le nom du modèle changent). Le prompt système (`backend/prompts/meeting_prompt.py`) n'a pas besoin d'être modifié.
+6. Redémarrer le serveur (`uvicorn backend.main:app --reload`) pour que la nouvelle configuration soit prise en compte.
+Le projet prévoit aussi un fallback local via [Ollama](https://ollama.com/) (`ollama==0.4.5` dans les dépendances), utilisable sans clé API externe si Groq est indisponible ou en cas de dépassement de quota.
+ 
+
